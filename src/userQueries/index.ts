@@ -24,7 +24,7 @@ async function createUser(
 
   console.log(res);
 }
-createUser("rajneesh1@gmail.com", "12345", "Rajneesh", "Mishra", "6386003647");
+// createUser("rajneesh@gmail.com", "12345", "Rajneesh", "Mishra", "6386003647");
 
 async function updateUser(
   email: string,
@@ -43,19 +43,19 @@ async function updateUser(
   });
   console.log(res);
 }
-updateUser("rajneesh1@gmail.com", { firstName: "Sachin", lastName: "Mishra" });
+// updateUser("rajneesh1@gmail.com", { firstName: "Sachin", lastName: "Mishra" });
 
 async function getUsers(email: string) {
   const res = await user.findFirst({
     where: {
       email,
     },
-    select: {
-      email: true,
-      firstName: true,
-      lastName: true,
-      id: true,
-    },
+    // select: {
+    //   email: true,
+    //   firstName: true,
+    //   lastName: true,
+    //   id: true,
+    // },
   });
   console.log(res);
 }
@@ -75,5 +75,6 @@ async function getUsersWithTodos(email: string) {
       todos: true,
     },
   });
+  console.log(res);
 }
 getUsersWithTodos("rajneesh@gmail.com");
