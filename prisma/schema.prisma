@@ -20,7 +20,7 @@ model User {
   firstName   String
   lastName    String?
   phoneNumber String?
-  todo        Todo[]
+  todos        Todo[]
 }
 
 model Todo {
