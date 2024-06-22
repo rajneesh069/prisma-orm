@@ -19,8 +19,8 @@ model User {
   password    String
   firstName   String
   lastName    String?
-  phoneNumber String
-  todos       Todo[]
+  phoneNumber String?
+  todo        Todo[]
 }
 
 model Todo {

@@ -5,7 +5,9 @@ async function createUser(
   email: string,
   password: string,
   firstName: string,
-  lastName: string
+  lastName: string,
+  phoneNumber  : string,
+  todo
 ) {
   const res = await user.create({
     data: {
@@ -13,6 +15,7 @@ async function createUser(
       firstName,
       lastName,
       password,
+      phoneNumber,todos
     },
     select: {
       id: true,
@@ -22,7 +25,7 @@ async function createUser(
 
   console.log(res);
 }
-// createUser("rajneesh1@gmail.com", "12345", "Rajneesh", "Mishra");
+createUser("rajneesh1@gmail.com", "12345", "Rajneesh", "Mishra", "6386003647");
 
 async function updateUser(
   email: string,
