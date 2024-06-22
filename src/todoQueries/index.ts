@@ -1,14 +1,16 @@
 import { PrismaClient } from "@prisma/client";
 const { todo } = new PrismaClient();
 
-type Todo = {
+type AddTodo = {
   title: string;
   description: string;
   userId: number;
 };
 
-async function addTodo({ title, description, userId }: Todo) {
-  const res = await todo.create({
+type UpdateTodo = AddTodo & { todoId: number };
+
+async function addTodo({ title, description, userId }: AddTodo) {
+  const addedTodo = await todo.create({
     data: {
       title,
       description,
@@ -16,7 +18,7 @@ async function addTodo({ title, description, userId }: Todo) {
     },
   });
 
-  console.log(res);
+  console.log(addedTodo);
 }
 
 // addTodo({ title: "Go buy Milk", description: "Go buy Milk at 5", userId: 1 });
@@ -40,16 +42,54 @@ async function getTodo(todoId: number) {
   console.log(res);
 }
 
-// getTodo(1);
+getTodo(1);
 
 async function getTodosForAParticularUser(userId: number) {
-  const res = await todo.findMany({
+  const todos = await todo.findMany({
     where: {
       userId,
     },
   });
-  console.log(res);
+  console.log(todos);
 }
 
 // getTodosForAParticularUser(1);
 
+async function updateTodo({ title, description, userId, todoId }: UpdateTodo) {
+  const updatedTodo = await todo.update({
+    where: {
+      id: todoId,
+      userId, //not necessary to use it, I am using it anyway
+    },
+    data: {
+      title,
+      description,
+    },
+  });
+  console.log(updatedTodo);
+}
+
+// updateTodo({
+//   title: "New Todo",
+//   description: "New Description",
+//   userId: 1,
+//   todoId: 1,
+// });
+
+async function deleteTodo({
+  todoId,
+  userId,
+}: {
+  todoId: number;
+  userId: number;
+}) {
+  const deletedTodo = await todo.delete({
+    where: {
+      id: todoId,
+      userId,
+    },
+  });
+  console.log(deletedTodo);
+}
+deleteTodo({ todoId: 1, userId: 1 });
+getTodo(1);
