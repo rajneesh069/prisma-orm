@@ -42,7 +42,7 @@ async function getTodo(todoId: number) {
   console.log(res);
 }
 
-getTodo(1);
+// getTodo(1);
 
 async function getTodosForAParticularUser(userId: number) {
   const todos = await todo.findMany({
@@ -53,7 +53,7 @@ async function getTodosForAParticularUser(userId: number) {
   console.log(todos);
 }
 
-// getTodosForAParticularUser(1);
+getTodosForAParticularUser(1);
 
 async function updateTodo({ title, description, userId, todoId }: UpdateTodo) {
   const updatedTodo = await todo.update({
@@ -91,5 +91,5 @@ async function deleteTodo({
   });
   console.log(deletedTodo);
 }
-deleteTodo({ todoId: 1, userId: 1 });
-getTodo(1);
+// deleteTodo({ todoId: 1, userId: 1 });
+// getTodo(1);
